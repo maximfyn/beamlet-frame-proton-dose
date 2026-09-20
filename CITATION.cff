@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+title: "Beamlet-frame proton dose: a factorised 3D U-Net for proton pencil-beam dose on CT"
+message: "If you use this code or the released weights, please cite the DoseRAD2026 dataset paper (below), and the challenge report once it is published."
+type: software
+authors:
+  - family-names: Braunsburger
+    given-names: Maxim
+    affiliation: "German Cancer Research Center (DKFZ) and Heidelberg University"
+repository-code: "https://github.com/maximfyn/beamlet-frame-proton-dose"
+license: Apache-2.0
+version: "1.0"
+date-released: "2026-09-21"
+keywords:
+  - proton therapy
+  - dose calculation
+  - radiotherapy
+  - deep learning
+references:
+  - type: article
+    title: "DoseRAD2026 Challenge dataset: AI accelerated photon and proton dose calculation for radiotherapy"
+    authors:
+      - family-names: Xiao
+        given-names: Fan
+      - family-names: Delopoulos
+        given-names: Nikolaos
+      - name: "and others"
+    year: 2026
+    journal: "arXiv preprint arXiv:2604.12778"
+    url: "https://arxiv.org/abs/2604.12778"

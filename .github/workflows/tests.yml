@@ -1,0 +1,28 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  cpu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      # CPU wheel of the same torch that trained and served the models.
+      - run: pip install torch==2.9.1 --index-url https://download.pytorch.org/whl/cpu
+      - run: pip install -r requirements.txt pyflakes
+      # The organisers' evaluation code, at the commit the metric tests last
+      # passed against, so tests/test_local_metrics.py runs here instead of skipping.
+      - run: |
+          git clone -q https://github.com/DoseRAD2026/evaluation-setup external/evaluation-setup
+          git -C external/evaluation-setup checkout -q fcb42a5f
+      # GPU- and dataset-dependent tests skip themselves on this runner.
+      - run: python -m pytest tests -q
+      # Unused names and imports only: the suite's own check is narrower (it
+      # looks for undefined names), and this keeps the repository lint-clean.
+      - run: python -m pyflakes models scripts submission examples evaluation tests

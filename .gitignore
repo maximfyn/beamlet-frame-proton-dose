@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+# anchored to the repo root: an unanchored `data/` also matched scripts/data/
+/data/
+/checkpoints/
+/wandb/
+/logs/
+*.mha
+/external/
+# created by the README's own steps
+.venv/
+/model/
+/aoti/
+/water_phantom.png

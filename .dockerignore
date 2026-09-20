@@ -1,0 +1,21 @@
+# The image builds from the repository root, so without this the daemon is handed
+# the local dataset as build context before it reads the first line of the
+# Dockerfile. Weights are NOT baked in: the platform mounts model.tar.gz at
+# /opt/ml/model, so checkpoints/ is excluded entirely.
+.git/
+.venv/
+data/
+checkpoints/
+model/
+wandb/
+logs/
+__pycache__/
+*.pyc
+*.mha
+*.nii
+*.nii.gz
+tests/
+configs/
+scripts/
+evaluation/
+external/

@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+SimpleITK
+numpy
+# models/geometry.py imports scipy.ndimage (the body contour's connected
+# components) and models/physics.py scipy.io. Omitting scipy makes the container
+# fail at import, which a local build without a docker daemon never catches.
+scipy
+# Pinned to what the base image already ships. Unpinned, pip is free to pull a
+# different build into --user and shadow the CUDA-matched one underneath it.
+torch==2.9.1

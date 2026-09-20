@@ -1,0 +1,15 @@
+# Adds the ahead-of-time compiled kernels (submission/export_aoti.py) to a built
+# inference image. Build context: the directory holding `aoti/` from the
+# export -- the repo root in README step 6:
+#   docker build -f submission/Dockerfile.aoti -t doserad2026-task3:aoti .
+ARG BASE=doserad2026-task3
+FROM ${BASE}
+USER root
+COPY aoti /opt/doserad-aoti
+RUN chmod -R a+rX /opt/doserad-aoti
+ENV AOTI_PACKAGE=/opt/doserad-aoti/net.so
+# AOTInductor bakes the input's strides into the graph; with this set, a layout
+# mismatch raises and the container falls back to eager instead of computing
+# with the layout it assumed.
+ENV AOTI_RUNTIME_CHECK_INPUTS=1
+USER user

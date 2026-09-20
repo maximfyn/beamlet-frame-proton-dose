@@ -1,0 +1,63 @@
+DoseRAD2026 Task 3 -- beamlet-frame proton dose model
+Copyright 2026 Maxim Braunsburger
+
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+This product includes data derived from third-party software:
+
+models/bragg_generic.npz
+    Depth-dose curves, lateral kernels and spot widths exported from the
+    "Generic" proton machine (protons_Generic.mat) as distributed with pyRadPlan
+    (https://github.com/e0404/pyRadPlan) under the BSD 3-Clause License
+    reproduced below. The machine data originates from matRad
+    (https://github.com/e0404/matRad).
+
+    Its "hlut" array is the HU-to-density table ("hu_to_density") published
+    in beam_parameters.json of the DoseRAD2026 dataset
+    (https://doi.org/10.5281/zenodo.19347848), licensed CC BY-NC 4.0.
+
+submission/app.py
+    Follows the DoseRAD2026 example algorithm published by the challenge
+    (https://github.com/chrisvanrun/DoseRAD2026-example-algorithm-invoke-API).
+    The file implements the interface the platform requires -- a FastAPI app
+    with /health and /invoke -- and is kept close to that example so the
+    contract is recognisable.
+
+evaluation/metrics.py
+    Ports the beam MAE and IDD-distance arithmetic of the challenge's
+    evaluation code (https://github.com/DoseRAD2026/evaluation-setup), so that
+    local scores equal the platform's exactly.
+
+    Neither upstream repository carries a licence. To the extent these two files
+    reproduce the organisers' code, they are not covered by this repository's
+    Apache-2.0 licence.
+
+--------------------------------------------------------------------------------
+BSD 3-Clause License
+
+Copyright (c) 2024, DKFZ
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+   list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its
+   contributors may be used to endorse or promote products derived from
+   this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.

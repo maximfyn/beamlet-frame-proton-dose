@@ -1,0 +1,37 @@
+# Fine-tune: 3 warm-start epochs from the base model under the rendered-frame
+# bias term. The submitted model is the LAST epoch (ep002).
+# Trains on the registry's 61 training patients (train_patients / val_patients
+# unset => models/splits.py). The 6 validation patients are not held out from
+# the model as a whole: the base it starts from trained on all 75.
+# Launch on 2 GPUs:
+#   python -m torch.distributed.run --nproc_per_node=2 \
+#     scripts/train/train_doserad.py --config configs/finetune_rbias_w32.yaml --data-root <SHARDS>
+run_name: finetune_rbias_w32
+init_from: checkpoints/e240_FINAL.pt
+epochs: 3
+batch_size: 20
+lr: 3.0e-5
+weight_decay: 1.0e-5
+base_features: 24
+levels: 5
+arch: factorised
+with_wepl: false
+with_bragg: true
+with_lateral: false
+with_depth: false
+rsp: hlut
+peak_relative_loss: false
+idd_weight: 0.05
+bias_weight: 32.0
+bias_frame: rendered
+augment_flip: false
+ema_decay: 0.0
+grad_accum: 1
+amp: bf16
+val_beamlets: 2000
+save_every_epoch: true
+save_state_every: 0
+wandb: false
+workers: 6
+log_every: 50
+checkpoint_dir: checkpoints

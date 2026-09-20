@@ -1,0 +1,10 @@
+# Training and preprocessing. The inference container pins its own set in
+# submission/requirements.txt (torch==2.9.1, which also trained the models).
+torch==2.9.1
+numpy
+scipy
+SimpleITK
+pyyaml
+pytest
+# optional: experiment logging (configs set wandb: false)
+# wandb
